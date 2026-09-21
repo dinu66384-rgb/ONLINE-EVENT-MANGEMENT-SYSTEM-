@@ -1,86 +1,39 @@
+const path = require("path");
+const dotenv = require("dotenv");
 
-const express = require("express");
+// Load environment variables from .env file
+dotenv.config({ path: path.join(__dirname, ".env") });
 
-const eventRoutes = require("./routes/eventRoutes");
-const userRoutes = require("./routes/userRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
+const app = require("./app");
+const connectDB = require("./config/db");
 
-const logger = require("./middleware/logger");
+const PORT = process.env.PORT || 5000;
 
-const app = express();
+// Connect to MongoDB and start server
+const startServer = async () => {
+    try {
+        await connectDB();
 
-const PORT = 5000;
+        const server = app.listen(PORT, () => {
+            console.log(
+                `=========================================\n` +
+                ` Event Management Server Running\n` +
+                ` Environment: ${process.env.NODE_ENV || "development"}\n` +
+                ` Port:        ${PORT}\n` +
+                ` URL:         http://localhost:${PORT}\n` +
+                `=========================================`
+            );
+        });
 
-// ===============================
-// Middleware
-// ===============================
+        // Handle Unhandled Promise Rejections
+        process.on("unhandledRejection", (err) => {
+            console.error(`[Unhandled Rejection] ${err.message}`);
+            server.close(() => process.exit(1));
+        });
+    } catch (err) {
+        console.error(`Server initialization failed: ${err.message}`);
+        process.exit(1);
+    }
+};
 
-// Read JSON request body
-app.use(express.json());
-
-// Request logger
-app.use(logger);
-
-// ===============================
-// Home Route
-// ===============================
-
-app.get("/", (req, res) => {
-    res.json({
-        success: true,
-        message: "Online Event Management System Server is Running",
-        version: "1.0.0"
-    });
-});
-
-// ===============================
-// API Status
-// ===============================
-
-app.get("/api/status", (req, res) => {
-    res.json({
-        success: true,
-        status: "Online",
-        service: "Event Management System API"
-    });
-});
-
-// ===============================
-// API Routes
-// ===============================
-
-app.use("/api/events", eventRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/bookings", bookingRoutes);
-
-// ===============================
-// 404 Error Handler
-// ===============================
-
-app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: "Route not found"
-    });
-});
-
-// ===============================
-// Global Error Handler
-// ===============================
-
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-
-    res.status(500).json({
-        success: false,
-        message: "Internal Server Error"
-    });
-});
-
-// ===============================
-// Start Server
-// ===============================
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+startServer();

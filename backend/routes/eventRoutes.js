@@ -1,45 +1,30 @@
 const express = require("express");
-
 const router = express.Router();
 
-// GET all events
-router.get("/", (req, res) => {
-    res.json({
-        message: "Get all events"
-    });
-});
+const {
+    createEvent,
+    getEvents,
+    getEventById,
+    updateEvent,
+    deleteEvent
+} = require("../controllers/eventController");
 
-// GET event by ID
-router.get("/:id", (req, res) => {
-    res.json({
-        message: "Get event by ID",
-        eventId: req.params.id
-    });
-});
+const { validateEvent } = require("../middleware/validationMiddleware");
+const { protect, authorize } = require("../middleware/authMiddleware");
 
-// POST create event
-router.post("/", (req, res) => {
-    res.json({
-        message: "Create event",
-        data: req.body
-    });
-});
+// GET /api/events - List events with query filtering, search, pagination (Public)
+router.get("/", getEvents);
 
-// PUT update event
-router.put("/:id", (req, res) => {
-    res.json({
-        message: "Update event",
-        eventId: req.params.id,
-        data: req.body
-    });
-});
+// GET /api/events/:id - Get single event details (Public)
+router.get("/:id", getEventById);
 
-// DELETE event
-router.delete("/:id", (req, res) => {
-    res.json({
-        message: "Delete event",
-        eventId: req.params.id
-    });
-});
+// POST /api/events - Create new event (Protected: Organizer, Admin)
+router.post("/", protect, authorize("organizer", "admin"), validateEvent, createEvent);
+
+// PUT /api/events/:id - Update event (Protected: Organizer, Admin)
+router.put("/:id", protect, authorize("organizer", "admin"), validateEvent, updateEvent);
+
+// DELETE /api/events/:id - Delete event (Protected: Organizer, Admin)
+router.delete("/:id", protect, authorize("organizer", "admin"), deleteEvent);
 
 module.exports = router;
