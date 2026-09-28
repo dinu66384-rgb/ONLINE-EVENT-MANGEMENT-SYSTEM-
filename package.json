@@ -1,20 +1,26 @@
 {
-  "name": "sss-lab",
+  "name": "online-event-management-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
+  "description": "Full-Stack MERN Online Event Management System (Weeks 1 to 7 Complete)",
+  "main": "backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "test": "node tests/test_api_runner.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mern",
+    "mongodb",
+    "express",
+    "react",
+    "node",
+    "event-management",
+    "jwt",
+    "bcrypt"
+  ],
+  "author": "SSN / SSS Lab Team",
   "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+  "type": "commonjs"
 }

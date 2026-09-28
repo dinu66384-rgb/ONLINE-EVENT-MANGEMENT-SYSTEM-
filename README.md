@@ -1,13 +1,13 @@
 # Online Event Management System
 
-An end-to-end full-stack platform designed to simplify event creation, discovery, attendee registration, and ticketing management.
+An end-to-end full-stack **MERN** (MongoDB, Express.js, React, Node.js) platform designed to simplify event creation, discovery, attendee registration, and ticketing management.
 
 ---
 
 ## 1. Project Overview
 
 ### 1.1 Problem Statement
-Managing events manually or across fragmented platforms often causes scheduling conflicts, untracked participant registrations, and lack of real-time capacity monitoring. The **Online Event Management System** solves this by providing a unified, scalable REST API and modern interface for event organizers, attendees, and system administrators.
+Managing events manually or across fragmented platforms often causes scheduling conflicts, untracked participant registrations, and lack of real-time capacity monitoring. The **Online Event Management System** solves this by providing a unified, scalable REST API and a modern, responsive React interface for event organizers, attendees, and system administrators.
 
 ### 1.2 Objectives
 - Provide a centralized hub for creating, discovering, and managing online and in-person events.
@@ -23,15 +23,14 @@ Managing events manually or across fragmented platforms often causes scheduling 
 
 ---
 
-## 2. Technology Stack
+## 2. Technology Stack (MERN)
 
-- **Runtime:** Node.js (v20+)
-- **Backend Framework:** Express.js (v5)
+- **Frontend:** React 19, Vite, React Router v7, Lucide Icons, Custom Vanilla CSS Design System
+- **Backend:** Node.js (v20+), Express.js (v5)
 - **Database:** MongoDB (with Mongoose ODM) & MySQL schema reference
-- **Security & Authentication:** `bcryptjs` (password hashing), `jsonwebtoken` (JWT), `cors`
+- **Security & Authentication:** `bcryptjs` (password hashing with 10 salt rounds), `jsonwebtoken` (JWT), `cors`
 - **Configuration:** `dotenv`
 - **Testing:** Node.js Automated Integration Runner (`tests/test_api_runner.js`)
-- **Frontend (Planned):** React / Vite
 
 ---
 
@@ -66,6 +65,34 @@ ONLINE-EVENT-MANAGEMENT-SYSTEM/
 │   ├── schema.sql                # Relational MySQL schema specification
 │   ├── .env.example              # Environment variables template
 │   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── EventCard.jsx     # Event card with seat progress meter
+│   │   │   ├── Navbar.jsx        # Sticky navigation with role badges & responsive menu
+│   │   │   ├── Footer.jsx        # Project overview & milestone indicators
+│   │   │   └── Loading.jsx       # Elegant animated spinner
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx   # Global auth state, JWT handling & toast notifications
+│   │   ├── pages/
+│   │   │   ├── Home.jsx          # Hero section, statistics counter, featured events
+│   │   │   ├── Events.jsx        # Event catalog with search, category tabs, sorting
+│   │   │   ├── EventDetails.jsx  # Event details, seat availability, booking form, roster
+│   │   │   ├── CreateEvent.jsx   # Form for organizers to publish events
+│   │   │   ├── MyRegistrations.jsx # User ticket dashboard & cancellation
+│   │   │   ├── Profile.jsx       # User profile details & update form
+│   │   │   ├── AdminDashboard.jsx # Admin console with user management
+│   │   │   ├── Login.jsx         # Sign in with 1-click test credentials
+│   │   │   └── Register.jsx      # Sign up with role selection
+│   │   ├── routes/
+│   │   │   └── AppRoutes.jsx     # Route definitions & protected route guards
+│   │   ├── services/
+│   │   │   └── api.js            # Axios/Fetch API client with token interceptor
+│   │   ├── index.css             # Vanilla CSS design tokens & animations
+│   │   ├── App.jsx               # App wrapper
+│   │   └── main.jsx
+│   ├── vite.config.js            # Vite config with backend API proxy
+│   └── package.json
 ├── docs/
 │   ├── API_DOCUMENTATION.md      # Full REST API endpoint reference
 │   ├── API_TESTING_EVIDENCE.md   # Week 6 CRUD test execution log
@@ -79,83 +106,75 @@ ONLINE-EVENT-MANAGEMENT-SYSTEM/
 
 ---
 
-## 4. Getting Started & Setup
+## 4. 10-Week Lab Progression Alignment (Weeks 1 to 7 Complete)
 
-### 4.1 Prerequisites
+| Week | Technical Focus | Milestone Completed | GitHub / Implementation Deliverables |
+| :--- | :--- | :--- | :--- |
+| **Week 1** | Node.js, NPM, Server-side scripting | Project Selection, Requirements, Server Foundation | `server.js`, `package.json`, `README.md` |
+| **Week 2** | Event Loop, Modules, Asynchronous Programming | Modular Backend Architecture | `app.js`, `controllers/`, `routes/`, `models/`, `middleware/` |
+| **Week 3** | Express.js Routing, Request/Response | API Routing & JSON Envelope Standard | `routes/*.js`, `docs/API_DOCUMENTATION.md` |
+| **Week 4** | Middleware, Static Files, Error Handling | Middleware Pipeline & Centralized Errors | `logger.js`, `validationMiddleware.js`, `errorMiddleware.js` |
+| **Week 5** | MongoDB Connectivity & Schemas | Database Connection & Mongoose Models | `config/db.js`, `models/*.js`, `schema.sql`, `.env` excluded |
+| **Week 6** | CRUD Operations, Queries, Filtering | Full CRUD APIs with Filtering & Capacity | `eventController.js`, `bookingController.js`, `docs/API_TESTING_EVIDENCE.md` |
+| **Week 7** | Authentication, Bcrypt, JWT / Sessions | User Signup/Login & Password Hashing | `authController.js`, `authMiddleware.js`, `docs/WEEK_7_SECURITY_REVIEW.md` |
+
+---
+
+## 5. Getting Started & Running the Application
+
+### 5.1 Prerequisites
 - [Node.js](https://nodejs.org/) (v18 or higher)
 - [MongoDB](https://www.mongodb.com/) running locally on `mongodb://127.0.0.1:27017`
 
-### 4.2 Installation
-```bash
-# Clone the repository
-git clone https://github.com/dinu66384-rgb/ONLINE-EVENT-MANGEMENT-SYSTEM-.git
-cd ONLINE-EVENT-MANGEMENT-SYSTEM-
+### 5.2 Starting Backend and Frontend
 
-# Navigate to backend and install dependencies
+#### Option A: Run from Root
+```bash
+# Start Backend API Server (port 5000)
+npm run backend
+
+# In a second terminal, start React Frontend (port 5173)
+npm run frontend
+```
+
+#### Option B: Run individually
+```bash
+# 1. Backend Server:
 cd backend
-npm install
-```
-
-### 4.3 Environment Configuration
-Create a `.env` file in the `backend/` directory based on `.env.example`:
-```env
-PORT=5000
-NODE_ENV=development
-MONGO_URI=mongodb://127.0.0.1:27017/event_management
-JWT_SECRET=your_super_secret_jwt_key_here
-JWT_EXPIRES_IN=7d
-```
-
-### 4.4 Running the Application
-```bash
-# Start backend server
-npm start
-
-# Or start in development mode with nodemon
 npm run dev
+# Server will run on: http://localhost:5000
+
+# 2. Frontend React Client:
+cd frontend
+npm run dev
+# Client will run on: http://localhost:5173
 ```
 
-### 4.5 Running Automated Tests
-To run the complete automated test suite covering all functionality from Weeks 1 through 7:
+Open your browser at **`http://localhost:5173`** to access the Online Event Management System.
+
+---
+
+## 6. Demo Accounts (1-Click Login Available)
+
+| Role | Email | Password | Permissions |
+| :--- | :--- | :--- | :--- |
+| **Organizer** | `organizer@example.com` | `Password123!` | Create & edit events, inspect attendee rosters |
+| **Participant** | `participant@example.com` | `Password123!` | Browse events, book tickets, cancel bookings |
+| **Administrator** | `admin@example.com` | `Password123!` | Full system administration, user management |
+
+---
+
+## 7. Running the Automated Test Suite
+
+To run all 26 automated integration tests covering Weeks 1 to 7:
+
 ```bash
-cd backend
-node ../tests/test_api_runner.js
+npm run test
 ```
 
----
-
-## 5. API Quick Reference
-
-| Method | Endpoint | Description | Access |
-|---|---|---|---|
-| `POST` | `/api/auth/register` | Register new user / organizer | Public |
-| `POST` | `/api/auth/login` | Log in and receive JWT token | Public |
-| `GET` | `/api/auth/me` | Get profile of logged-in user | Private |
-| `POST` | `/api/auth/logout` | Log out user | Private |
-| `GET` | `/api/events` | List events with filtering, search, pagination | Public |
-| `GET` | `/api/events/:id` | Get details of single event | Public |
-| `POST` | `/api/events` | Create new event | Private (Organizer, Admin) |
-| `PUT` | `/api/events/:id` | Update event details | Private (Owner, Admin) |
-| `DELETE` | `/api/events/:id` | Delete event and registrations | Private (Owner, Admin) |
-| `POST` | `/api/bookings` | Book tickets for an event | Private (User) |
-| `GET` | `/api/bookings/my-bookings` | Get logged-in user's bookings | Private (User) |
-| `GET` | `/api/bookings/event/:eventId` | Get attendee roster for event | Private (Organizer, Admin) |
-| `DELETE` | `/api/bookings/:id` | Cancel booking & restore capacity | Private (Owner, Admin) |
-| `GET` | `/api/users` | List all users | Private (Admin) |
-
-For comprehensive payload schemas, see [API Documentation](docs/API_DOCUMENTATION.md).
-
----
-
-## 6. Project Progression Status (Weeks 1-7 Complete)
-
-- [x] **Week 1:** Project Initiation, Scope, Architecture & Basic Node.js server
-- [x] **Week 2:** Modular Architecture & Asynchronous programming
-- [x] **Week 3:** Express Routing & Initial API documentation
-- [x] **Week 4:** Middleware Pipeline, Validation & Centralized Error Handling
-- [x] **Week 5:** MongoDB Connection, Mongoose Models (`User`, `Event`, `Registration`), `.env` protection
-- [x] **Week 6:** Complete CRUD APIs with Search, Filtering, Pagination, and Testing Evidence
-- [x] **Week 7:** Authentication with Bcrypt Password Hashing, JWT Tokens, and Security Review
-- [ ] **Week 8:** Advanced Security, Logging & Debugging
-- [ ] **Week 9:** Frontend-Backend Integration
-- [ ] **Week 10:** Cloud Deployment & Final Demonstration
+**Test Verification Summary:**
+```text
+==================================================
+ Summary: 26/26 tests passed (100%)
+==================================================
+```
