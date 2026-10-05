@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer style={{
       marginTop: 'auto',
-      borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-      background: 'rgba(10, 13, 20, 0.95)',
+      borderTop: '1px solid rgba(168, 85, 247, 0.15)',
+      background: 'rgba(9, 7, 20, 0.95)',
       padding: '48px 0 24px 0'
     }}>
       <div className="container">
@@ -47,18 +47,18 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Technical Specs (Weeks 1 to 7) */}
+          {/* Platform Technology Stack */}
           <div>
-            <h4 style={{ fontSize: '0.95rem', marginBottom: '16px', color: 'white' }}>Architecture Milestones</h4>
+            <h4 style={{ fontSize: '0.95rem', marginBottom: '16px', color: 'white' }}>Technology Stack</h4>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
               <span className="badge badge-tech"><Server size={12} /> Node.js & Express</span>
               <span className="badge badge-tech"><Database size={12} /> MongoDB & Mongoose</span>
               <span className="badge badge-tech"><Layers size={12} /> React 19 & Vite</span>
-              <span className="badge badge-workshop"><ShieldCheck size={12} /> Bcrypt & JWT (W7)</span>
-              <span className="badge badge-conference">CRUD & Queries (W6)</span>
+              <span className="badge badge-workshop"><ShieldCheck size={12} /> Bcrypt & JWT</span>
+              <span className="badge badge-conference">RESTful CRUD API</span>
             </div>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '12px' }}>
-              Weeks 1–7 Milestones 100% Implemented & Verified
+              Enterprise MERN Architecture & Secure Operations
             </p>
           </div>
         </div>

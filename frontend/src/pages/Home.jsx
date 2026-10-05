@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Calendar, 
-  Sparkles, 
-  Users, 
-  ShieldCheck, 
   ArrowRight, 
-  Search, 
-  CheckCircle,
-  Database,
-  Cpu,
-  Layers,
-  Award
+  Search 
 } from 'lucide-react';
 import api from '../services/api';
 import EventCard from '../components/EventCard';
@@ -60,22 +51,6 @@ const Home = () => {
         <div className="container">
           <div style={{ maxWidth: '840px', margin: '0 auto', textAlign: 'center' }}>
             
-            {/* Tag badge */}
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: 'var(--radius-full)',
-              background: 'rgba(99, 102, 241, 0.12)',
-              border: '1px solid rgba(99, 102, 241, 0.3)',
-              color: '#a5b4fc',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              marginBottom: '24px'
-            }}>
-              <Sparkles size={14} /> Full-Stack MERN Architecture (Weeks 1–7)
-            </div>
 
             {/* Main Heading */}
             <h1 style={{
@@ -87,7 +62,7 @@ const Home = () => {
             }}>
               Discover, Organize & Book <br />
               <span style={{
-                background: 'linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #38bdf8 100%)',
+                background: 'var(--accent-gradient)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}>
@@ -127,7 +102,7 @@ const Home = () => {
             marginTop: '60px'
           }}>
             <div className="card" style={{ textAlign: 'center', padding: '24px 16px' }}>
-              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#818cf8', fontFamily: 'var(--font-heading)' }}>
+              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--accent-primary)', fontFamily: 'var(--font-heading)' }}>
                 {stats.eventsCount}+
               </div>
               <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500 }}>
@@ -153,14 +128,6 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="card" style={{ textAlign: 'center', padding: '24px 16px' }}>
-              <div style={{ fontSize: '2.4rem', fontWeight: 800, color: '#f472b6', fontFamily: 'var(--font-heading)' }}>
-                Week 1–7
-              </div>
-              <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500 }}>
-                Milestones Verified & Tested
-              </div>
-            </div>
           </div>
 
         </div>
@@ -178,7 +145,7 @@ const Home = () => {
             gap: '16px'
           }}>
             <div>
-              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#818cf8', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-primary)', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 Featured Catalog
               </span>
               <h2 style={{ fontSize: '2rem', fontWeight: 800, marginTop: '4px' }}>
@@ -211,60 +178,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Syllabus / Technical Showcase Banner */}
-      <section style={{ padding: '0 0 80px 0' }}>
-        <div className="container">
-          <div className="card" style={{
-            background: 'linear-gradient(135deg, rgba(22, 29, 44, 0.9), rgba(15, 23, 42, 0.95))',
-            border: '1px solid rgba(99, 102, 241, 0.25)',
-            padding: '40px',
-            borderRadius: 'var(--radius-xl)'
-          }}>
-            <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 36px auto' }}>
-              <h2 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '12px' }}>
-                10-Week Lab Progression Overview
-              </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-                Designed and implemented strictly against the course progression guidelines:
-              </p>
-            </div>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '20px'
-            }}>
-              <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#818cf8', fontWeight: 700, marginBottom: '8px' }}>
-                  <CheckCircle size={18} color="#10b981" /> Weeks 1–3: Core Backend
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                  Node.js server, Express REST router, async controllers, JSON response standards.
-                </p>
-              </div>
-
-              <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#818cf8', fontWeight: 700, marginBottom: '8px' }}>
-                  <CheckCircle size={18} color="#10b981" /> Weeks 4–5: Middleware & DB
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                  Custom request logger, validation rules, centralized 404/error handling, MongoDB & Mongoose schemas.
-                </p>
-              </div>
-
-              <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#818cf8', fontWeight: 700, marginBottom: '8px' }}>
-                  <CheckCircle size={18} color="#10b981" /> Weeks 6–7: CRUD & Auth
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                  Event & booking CRUD with atomic capacity updates, search filtering, Bcrypt (10 rounds) & JWT tokens.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

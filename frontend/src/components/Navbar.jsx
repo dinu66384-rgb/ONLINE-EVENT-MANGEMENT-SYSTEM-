@@ -14,6 +14,7 @@ import {
   ShieldAlert,
   Sparkles
 } from 'lucide-react';
+import ThemeSelector from './ThemeSelector';
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -33,9 +34,9 @@ const Navbar = () => {
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: 'rgba(11, 15, 25, 0.85)',
+      background: 'rgba(9, 7, 20, 0.85)',
       backdropFilter: 'blur(16px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      borderBottom: '1px solid rgba(168, 85, 247, 0.15)',
       padding: '14px 0'
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -43,13 +44,13 @@ const Navbar = () => {
         {/* Brand Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
           <div style={{
-            background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+            background: 'var(--accent-gradient)',
             padding: '8px',
             borderRadius: '12px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)'
+            boxShadow: 'var(--accent-glow)'
           }}>
             <Calendar size={22} color="#ffffff" />
           </div>
@@ -64,7 +65,7 @@ const Navbar = () => {
               alignItems: 'center',
               gap: '6px'
             }}>
-              EventFlow <span style={{ fontSize: '0.7rem', padding: '2px 6px', background: 'rgba(99, 102, 241, 0.2)', border: '1px solid rgba(99, 102, 241, 0.4)', borderRadius: '4px', color: '#818cf8' }}>MERN</span>
+              EventFlow <span style={{ fontSize: '0.7rem', padding: '2px 6px', background: 'rgba(168, 85, 247, 0.2)', border: '1px solid rgba(168, 85, 247, 0.4)', borderRadius: '4px', color: '#c084fc' }}>MERN</span>
             </span>
           </div>
         </Link>
@@ -76,7 +77,7 @@ const Navbar = () => {
             style={{ 
               fontWeight: 500, 
               fontSize: '0.92rem',
-              color: isActive('/') ? '#818cf8' : '#cbd5e1' 
+              color: isActive('/') ? '#c084fc' : '#cbd5e1' 
             }}
           >
             Home
@@ -86,7 +87,7 @@ const Navbar = () => {
             style={{ 
               fontWeight: 500, 
               fontSize: '0.92rem',
-              color: isActive('/events') ? '#818cf8' : '#cbd5e1' 
+              color: isActive('/events') ? '#c084fc' : '#cbd5e1' 
             }}
           >
             Browse Events
@@ -101,7 +102,7 @@ const Navbar = () => {
                 gap: '6px', 
                 fontWeight: 500, 
                 fontSize: '0.92rem',
-                color: isActive('/my-registrations') ? '#818cf8' : '#cbd5e1' 
+                color: isActive('/my-registrations') ? '#c084fc' : '#cbd5e1' 
               }}
             >
               <Ticket size={16} /> My Bookings
@@ -136,7 +137,9 @@ const Navbar = () => {
         </div>
 
         {/* User Status / Auth Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <ThemeSelector />
+
           {isAuthenticated ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <Link 
@@ -233,6 +236,9 @@ const Navbar = () => {
           {user?.role === 'admin' && (
             <Link to="/admin" onClick={() => setMobileMenuOpen(false)}>Admin Console</Link>
           )}
+          <div style={{ paddingTop: '8px', borderTop: '1px solid var(--border-subtle)', marginTop: '4px' }}>
+            <ThemeSelector />
+          </div>
         </div>
       )}
     </nav>

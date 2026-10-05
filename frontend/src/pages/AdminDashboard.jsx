@@ -95,7 +95,7 @@ const AdminDashboard = () => {
 
         <div className="card" style={{ padding: '24px' }}>
           <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Database</span>
-          <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#818cf8', marginTop: '10px' }}>
+          <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--accent-primary)', marginTop: '10px' }}>
             MongoDB & Mongoose
           </div>
         </div>

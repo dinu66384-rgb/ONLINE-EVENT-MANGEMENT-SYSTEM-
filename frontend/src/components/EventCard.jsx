@@ -78,17 +78,17 @@ const EventCard = ({ event }) => {
         {/* Metadata info items */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px', fontSize: '0.86rem', color: '#cbd5e1' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Calendar size={15} color="#818cf8" />
+            <Calendar size={15} color="var(--accent-secondary)" />
             <span>{formattedDate}</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Clock size={15} color="#818cf8" />
+            <Clock size={15} color="var(--accent-secondary)" />
             <span>{eventTime}</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <MapPin size={15} color="#818cf8" />
+            <MapPin size={15} color="var(--accent-secondary)" />
             <span style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{location}</span>
           </div>
         </div>

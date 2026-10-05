@@ -146,7 +146,7 @@ const Login = () => {
               fontWeight: 700,
               marginBottom: '10px'
             }}>
-              <Sparkles size={12} color="#818cf8" /> Quick Test Credentials
+              <Sparkles size={12} color="var(--accent-primary)" /> Quick Test Credentials
             </span>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
@@ -171,7 +171,7 @@ const Login = () => {
 
           <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
             Don't have an account yet?{' '}
-            <Link to="/register" style={{ fontWeight: 600, color: '#818cf8' }}>
+            <Link to="/register" style={{ fontWeight: 600, color: 'var(--accent-primary)' }}>
               Register here
             </Link>
           </div>

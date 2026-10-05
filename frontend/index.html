@@ -1,18 +1,421 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Online Event Management System | Discover, Book & Organize Events</title>
-    <meta name="description" content="A comprehensive full-stack MERN Online Event Management System for event discovery, ticketing, attendee rosters, and capacity management." />
-    <!-- Google Fonts: Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Document Metadata -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+  <!-- Primary SEO Tags -->
+  <title>Online Event Management System | Discover, Book & Organize Events</title>
+  <meta name="title" content="Online Event Management System | Discover, Book & Organize Events" />
+  <meta name="description"
+    content="A comprehensive full-stack MERN Online Event Management System. Discover trending tech conferences, workshops, and seminars with real-time seat availability, instant ticket booking, role-based organizer roster management, and secure JWT & Bcrypt authentication." />
+  <meta name="keywords"
+    content="Online Event Management, Event Booking System, Event Ticketing, Conference Registration, MERN Stack Event App, Real-Time Seat Capacity, Event Organizer Portal, Ticket Reservation" />
+  <meta name="author" content="Online Event Management System Team" />
+  <meta name="application-name" content="Online Event Management System" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#090714" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph / Facebook Protocol -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://online-event-management.local/" />
+  <meta property="og:title" content="Online Event Management System | Discover, Book & Organize Events" />
+  <meta property="og:description"
+    content="Full-stack MERN platform featuring live event catalogs, atomic ticket reservation with real-time seat counters, organizer roster analytics, and secure role-based access." />
+  <meta property="og:image" content="/favicon.svg" />
+  <meta property="og:site_name" content="Online Event Management System" />
+
+  <!-- Twitter Card Protocol -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Online Event Management System | Discover, Book & Organize Events" />
+  <meta name="twitter:description"
+    content="Full-stack MERN platform featuring live event catalogs, atomic ticket reservation with real-time seat counters, organizer roster analytics, and secure role-based access." />
+  <meta name="twitter:image" content="/favicon.svg" />
+
+  <!-- Typography: Google Fonts (Inter & Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Online Event Management System",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All modern web browsers",
+    "description": "Full-stack MERN event publishing, attendee ticketing, and capacity tracking system.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Real-time seat capacity reservation with atomic counter updates",
+      "Event creation, editing, and publishing for verified organizers",
+      "Bcrypt salted password encryption and JSON Web Token (JWT) sessions",
+      "Multi-criteria filtering by category, date, and keyword search",
+      "Interactive attendee roster view and one-click ticket cancellation"
+    ]
+  }
+  </script>
+
+  <!-- Immediate Theme Initializer to prevent flash -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('app-theme') || 'cyber-emerald';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Pre-render and Fallback Styles -->
+  <style>
+    :root, [data-theme="cyber-emerald"] {
+      --bg-primary: #060f0e;
+      --bg-card: rgba(13, 31, 28, 0.75);
+      --border-color: rgba(16, 185, 129, 0.18);
+      --text-main: #f0fdf4;
+      --text-muted: #a7f3d0;
+      --accent: #10b981;
+      --accent-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      --bg-radial-1: rgba(16, 185, 129, 0.14);
+      --bg-radial-2: rgba(6, 182, 212, 0.1);
+    }
+
+    [data-theme="royal-amethyst"] {
+      --bg-primary: #090714;
+      --bg-card: rgba(26, 20, 48, 0.75);
+      --border-color: rgba(168, 85, 247, 0.18);
+      --text-main: #f8fafc;
+      --text-muted: #c4b5fd;
+      --accent: #a855f7;
+      --accent-gradient: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #c084fc 100%);
+      --bg-radial-1: rgba(168, 85, 247, 0.14);
+      --bg-radial-2: rgba(99, 102, 241, 0.1);
+    }
+
+    [data-theme="ocean-sapphire"] {
+      --bg-primary: #070d18;
+      --bg-card: rgba(15, 28, 52, 0.75);
+      --border-color: rgba(59, 130, 246, 0.18);
+      --text-main: #f0f9ff;
+      --text-muted: #bae6fd;
+      --accent: #3b82f6;
+      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 50%, #6366f1 100%);
+      --bg-radial-1: rgba(59, 130, 246, 0.15);
+      --bg-radial-2: rgba(14, 165, 233, 0.1);
+    }
+
+    [data-theme="sunset-amber"] {
+      --bg-primary: #140a08;
+      --bg-card: rgba(42, 22, 18, 0.75);
+      --border-color: rgba(249, 115, 22, 0.2);
+      --text-main: #fff7ed;
+      --text-muted: #fed7aa;
+      --accent: #f97316;
+      --accent-gradient: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #fbbf24 100%);
+      --bg-radial-1: rgba(249, 115, 22, 0.15);
+      --bg-radial-2: rgba(239, 68, 68, 0.1);
+    }
+
+    [data-theme="modern-light"] {
+      --bg-primary: #f8fafc;
+      --bg-card: rgba(255, 255, 255, 0.95);
+      --border-color: rgba(15, 23, 42, 0.12);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent: #4f46e5;
+      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      --bg-radial-1: rgba(79, 70, 229, 0.08);
+      --bg-radial-2: rgba(124, 58, 237, 0.06);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(at 15% 15%, var(--bg-radial-1) 0px, transparent 55%),
+        radial-gradient(at 85% 85%, var(--bg-radial-2) 0px, transparent 55%);
+      background-attachment: fixed;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .static-doc-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .static-header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 24px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .static-brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .static-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .static-nav a:hover {
+      color: #fff;
+    }
+
+    .static-hero {
+      text-align: center;
+      padding: 40px 0 60px 0;
+    }
+
+    .static-hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .static-hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin: 0 auto 30px auto;
+    }
+
+    .static-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+
+    .static-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .static-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .static-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 0;
+    }
+
+    .static-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 50px 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .static-table th, .static-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.92rem;
+    }
+
+    .static-table th {
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .static-table td {
+      color: var(--text-muted);
+    }
+
+    .static-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 28px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Application Mount Node with Semantic Pre-Render Structure -->
+  <div id="root">
+    <!-- Descriptive Fallback and Semantic Architecture Content -->
+    <header class="static-header" role="banner">
+      <div class="static-brand">Online Event Management System</div>
+      <nav class="static-nav" role="navigation" aria-label="Main Navigation">
+        <a href="/events">Explore Events</a>
+        <a href="/login">Organizer Portal</a>
+        <a href="/register">Sign Up</a>
+      </nav>
+    </header>
+
+    <main class="static-doc-container" role="main">
+      <!-- Hero Descriptive Section -->
+      <section class="static-hero" aria-labelledby="hero-heading">
+        <h1 id="hero-heading">Discover, Organize & Book Unforgettable Events</h1>
+        <p>
+          A comprehensive full-stack platform built for scalable event publishing, dynamic attendee registrations,
+          real-time capacity monitoring, and enterprise role-based access control.
+        </p>
+      </section>
+
+      <!-- Core Capabilities Grid -->
+      <section aria-labelledby="features-heading">
+        <h2 id="features-heading" style="text-align: center; margin-bottom: 32px; font-size: 2rem;">
+          Core System Capabilities
+        </h2>
+        <div class="static-grid">
+          <article class="static-card">
+            <h3>Event Discovery & Filtering</h3>
+            <p>
+              Search and filter events by category (Tech, Music, Workshop, Business, Conference), keyword, and upcoming
+              dates with live pagination and real-time seat tracking.
+            </p>
+          </article>
+
+          <article class="static-card">
+            <h3>Real-Time Ticket Booking</h3>
+            <p>
+              Guaranteed capacity integrity with atomic seat counter reservations, automated duplicate registration
+              prevention, and instant booking confirmation.
+            </p>
+          </article>
+
+          <article class="static-card">
+            <h3>Role-Based Security & Auth</h3>
+            <p>
+              Industry-standard Bcrypt password encryption with 10 salt rounds and tamper-proof JSON Web Tokens (JWT)
+              for secure role authorization (Admin, Organizer, Participant).
+            </p>
+          </article>
+
+          <article class="static-card">
+            <h3>Organizer Management Console</h3>
+            <p>
+              Dedicated organizer dashboard to create, update, and publish events, track ticket sales, and view live
+              attendee rosters in real-time.
+            </p>
+          </article>
+
+          <article class="static-card">
+            <h3>Participant Ticket Wallet</h3>
+            <p>
+              Attendees can view all their confirmed bookings, check event venue details, and cancel tickets with
+              instant automated seat replenishment.
+            </p>
+          </article>
+
+          <article class="static-card">
+            <h3>Administrative Oversight</h3>
+            <p>
+              Comprehensive administration portal to manage registered users, promote organizer roles, and oversee all
+              system-wide event listings.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- System Architecture & Module Specifications -->
+      <section aria-labelledby="modules-heading">
+        <h2 id="modules-heading" style="margin-top: 40px; font-size: 1.8rem;">
+          Functional Module Specifications
+        </h2>
+        <table class="static-table" aria-label="System Architecture Modules">
+          <thead>
+            <tr>
+              <th scope="col">Module Name</th>
+              <th scope="col">Target Role</th>
+              <th scope="col">Core Functional Responsibilities</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style="color: #fff; font-weight: 500;">Authentication Module</th>
+              <td>All Users</td>
+              <td>User signup, secure signin, Bcrypt password hashing, JWT token issuance, protected route access guards.</td>
+            </tr>
+            <tr>
+              <th scope="row" style="color: #fff; font-weight: 500;">Event Catalog Module</th>
+              <td>Public / Attendees</td>
+              <td>Event browsing, search by keyword, multi-category filtering, date sorting, and live seat count display.</td>
+            </tr>
+            <tr>
+              <th scope="row" style="color: #fff; font-weight: 500;">Booking & Capacity Module</th>
+              <td>Registered Attendees</td>
+              <td>Ticket booking, atomic seat decrement, booking cancellation with seat restock, personal ticket dashboard.</td>
+            </tr>
+            <tr>
+              <th scope="row" style="color: #fff; font-weight: 500;">Organizer Publishing Module</th>
+              <td>Event Organizers</td>
+              <td>Event creation form, capacity configuration, schedule planning, and live attendee roster monitoring.</td>
+            </tr>
+            <tr>
+              <th scope="row" style="color: #fff; font-weight: 500;">Administration Console</th>
+              <td>System Administrators</td>
+              <td>User moderation, role escalation (User to Organizer/Admin), global event oversight, and platform health.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer class="static-footer" role="contentinfo">
+      <div class="static-doc-container">
+        <p>&copy; Online Event Management System &mdash; Built with MongoDB, Express.js, React & Node.js.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Accessible No-Script Fallback -->
+  <noscript>
+    <div style="background: #1c1135; color: #f3e8ff; padding: 16px; text-align: center; font-size: 0.95rem;">
+      JavaScript is currently disabled in your browser. The Online Event Management System interface requires JavaScript for interactive booking. Please enable JavaScript to access full dynamic features.
+    </div>
+  </noscript>
+
+  <!-- React 19 Client Entrypoint -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

@@ -171,8 +171,8 @@ const Register = () => {
                   style={{
                     padding: '12px',
                     borderRadius: 'var(--radius-md)',
-                    border: formData.role === 'user' ? '2px solid #6366f1' : '1px solid var(--border-subtle)',
-                    background: formData.role === 'user' ? 'rgba(99, 102, 241, 0.15)' : 'var(--bg-input)',
+                    border: formData.role === 'user' ? '2px solid var(--accent-primary)' : '1px solid var(--border-subtle)',
+                    background: formData.role === 'user' ? 'rgba(168, 85, 247, 0.15)' : 'var(--bg-input)',
                     cursor: 'pointer',
                     textAlign: 'center',
                     transition: 'all 0.2s'
@@ -191,8 +191,8 @@ const Register = () => {
                   style={{
                     padding: '12px',
                     borderRadius: 'var(--radius-md)',
-                    border: formData.role === 'organizer' ? '2px solid #a855f7' : '1px solid var(--border-subtle)',
-                    background: formData.role === 'organizer' ? 'rgba(168, 85, 247, 0.15)' : 'var(--bg-input)',
+                    border: formData.role === 'organizer' ? '2px solid var(--accent-secondary)' : '1px solid var(--border-subtle)',
+                    background: formData.role === 'organizer' ? 'var(--bg-card-hover)' : 'var(--bg-input)',
                     cursor: 'pointer',
                     textAlign: 'center',
                     transition: 'all 0.2s'
@@ -220,7 +220,7 @@ const Register = () => {
 
           <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
             Already have an account?{' '}
-            <Link to="/login" style={{ fontWeight: 600, color: '#818cf8' }}>
+            <Link to="/login" style={{ fontWeight: 600, color: 'var(--accent-primary)' }}>
               Sign in
             </Link>
           </div>

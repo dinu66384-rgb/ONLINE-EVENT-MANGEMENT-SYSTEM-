@@ -114,15 +114,15 @@ const MyRegistrations = () => {
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: '20px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <Calendar size={15} color="#818cf8" />
+                      <Calendar size={15} color="var(--accent-secondary)" />
                       <span>{formattedDate}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <Clock size={15} color="#818cf8" />
+                      <Clock size={15} color="var(--accent-secondary)" />
                       <span>{ev.eventTime}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <MapPin size={15} color="#818cf8" />
+                      <MapPin size={15} color="var(--accent-secondary)" />
                       <span>{ev.location}</span>
                     </div>
                   </div>

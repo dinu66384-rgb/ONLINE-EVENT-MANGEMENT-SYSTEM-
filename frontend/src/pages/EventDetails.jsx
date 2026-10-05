@@ -191,42 +191,42 @@ const EventDetails = () => {
             padding: '24px'
           }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ background: 'rgba(99, 102, 241, 0.15)', padding: '10px', borderRadius: '10px', color: '#818cf8' }}>
+              <div style={{ background: 'var(--bg-card-hover)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '10px', color: 'var(--accent-primary)' }}>
                 <Calendar size={20} />
               </div>
               <div>
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase', fontWeight: 600 }}>Date</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'white' }}>{formattedDate}</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>{formattedDate}</span>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ background: 'rgba(99, 102, 241, 0.15)', padding: '10px', borderRadius: '10px', color: '#818cf8' }}>
+              <div style={{ background: 'var(--bg-card-hover)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '10px', color: 'var(--accent-primary)' }}>
                 <Clock size={20} />
               </div>
               <div>
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase', fontWeight: 600 }}>Time</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'white' }}>{event.eventTime}</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>{event.eventTime}</span>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ background: 'rgba(99, 102, 241, 0.15)', padding: '10px', borderRadius: '10px', color: '#818cf8' }}>
+              <div style={{ background: 'var(--bg-card-hover)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '10px', color: 'var(--accent-primary)' }}>
                 <MapPin size={20} />
               </div>
               <div>
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase', fontWeight: 600 }}>Location</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'white' }}>{event.location}</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>{event.location}</span>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-              <div style={{ background: 'rgba(99, 102, 241, 0.15)', padding: '10px', borderRadius: '10px', color: '#818cf8' }}>
+              <div style={{ background: 'var(--bg-card-hover)', border: '1px solid var(--border-subtle)', padding: '10px', borderRadius: '10px', color: 'var(--accent-primary)' }}>
                 <Users size={20} />
               </div>
               <div>
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'block', textTransform: 'uppercase', fontWeight: 600 }}>Capacity</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'white' }}>
+                <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                   {event.registeredCount || 0} / {event.capacity} Registered
                 </span>
               </div>
